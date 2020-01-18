@@ -18,14 +18,15 @@ def load_train_data(train_data_path):
     train_data_file = open(train_data_path, 'r')
     train_data_text = train_data_file.read()
     train_data_file.close()
-    train_data_text = train_data_text.lower()
+    train_data_text = train_data_text.lower().replace('\r', '').replace('\n', ' ')
 
     tokenizer = kr.preprocessing.text.Tokenizer()
     tokenizer.fit_on_texts([train_data_text])
+    encoded_train_data_text = tokenizer.texts_to_sequences([train_data_text])[0]
 
     sequence_list = list()
-    for line in train_data_text.split('\n'):
-        encoded = tokenizer.texts_to_sequences([line])[0]
+    for pos in range(cfg.max_sequence_len + 1, len(encoded_train_data_text)):
+        encoded = encoded_train_data_text[pos - (cfg.max_sequence_len + 1):pos]
         for i in range(1, len(encoded)):
             sequence_list.append(encoded[:i + 1])
 
