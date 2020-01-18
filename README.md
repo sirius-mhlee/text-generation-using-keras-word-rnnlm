@@ -13,11 +13,10 @@ https://en.wikipedia.org/wiki/Wikipedia:About
 Training Usage
 -----
 
-    python TrainingModel.py train_data_file output_model_file output_tokenizer_file output_sequence_len_file
+    python TrainingModel.py train_data_file output_model_file output_tokenizer_file
 
     ex)
     python TrainingModel.py ./data/train_data.txt ./model/rnnlm_model.h5 ./model/tokenizer.pickle
-        ./model/sequence_len.txt
 
 Training Result
 -----
@@ -27,11 +26,11 @@ Training Result
 Generation Usage
 -----
 
-    python PredictSentence.py input_model_file input_tokenizer_file input_sequence_len_file
+    python PredictSentence.py input_model_file input_tokenizer_file
         "input_sentence" output_word_count
 
     ex)
-    python PredictSentence.py ./model/rnnlm_model.h5 ./model/tokenizer.pickle ./model/sequence_len.txt
+    python PredictSentence.py ./model/rnnlm_model.h5 ./model/tokenizer.pickle
         "wikipedia" 8
 
 Generation Result
