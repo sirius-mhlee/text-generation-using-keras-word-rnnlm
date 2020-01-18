@@ -9,18 +9,15 @@ import DataOperator as do
 
 import RNNLMNetwork as rn
 
-def generate_sentence(tokenizer, index_to_word, model, current_word, generate_num):
-    current_word = current_word.lower()
-    sentence = current_word
+def generate_sentence(tokenizer, index_to_word, model, input_word, generate_num):
+    sentence = input_word.lower()
 
     for _ in range(generate_num):
-        encoded = tokenizer.texts_to_sequences([current_word])[0]
+        encoded = tokenizer.texts_to_sequences([sentence])[0]
         encoded = kr.preprocessing.sequence.pad_sequences([encoded], maxlen=cfg.max_sequence_len, padding='pre', truncating='pre')
 
         predict_label_index = model.predict_classes(encoded)
         word = index_to_word[predict_label_index[0]]
-
-        current_word = current_word + ' '  + word
         sentence = sentence + ' ' + word
 
     return sentence
