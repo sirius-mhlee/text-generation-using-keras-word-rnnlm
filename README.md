@@ -26,12 +26,10 @@ Training Result
 Generation Usage
 -----
 
-    python PredictSentence.py input_model_file input_tokenizer_file
-        "input_sentence" output_word_count
+    python PredictSentence.py input_model_file input_tokenizer_file "input_sentence" output_word_count
 
     ex)
-    python PredictSentence.py ./model/rnnlm_model.h5 ./model/tokenizer.pickle
-        "wikipedia" 8
+    python PredictSentence.py ./model/rnnlm_model.h5 ./model/tokenizer.pickle "wikipedia" 8
 
 Generation Result
 -----
